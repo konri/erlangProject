@@ -2,7 +2,15 @@
 -compile(export_all).
 
 start() ->
-inets:start().
+    inets:start().
+
+
+lengthList([]) ->
+    0;
+lengthList([_|T]) ->
+    1 + lengthList(T).
+
+
 post(URL, ContentType, Body) -> request(post, {URL, [], ContentType, Body}).
 get(URL)                     -> request(get,  {URL, []}).
 
@@ -33,15 +41,71 @@ getInformation(Url, HtmlTag) ->
     getSpecifyElements(HtmlTag, getJsonStructure(getResponse(Url))).
 
 
-getTempInteger([],Lista) ->
-    Lista;
-getTempInteger([H|T],Lista)->
+getTemperatureList([]) ->
+    [];
+getTemperatureList([H|T])->
     {_,_,C} = H,
     [BinaryInt] = C,
     Int = erlang:binary_to_integer(BinaryInt),
-    getTempInteger(T,Lista ++ [Int]).
+    [Int] ++ getTemperatureList(T).
+
+getDayList([]) ->
+    "";
+getDayList([H|T]) ->
+    {_,_,C} = H,
+    [BinaryString] = C,
+    String = erlang:binary_to_list(BinaryString),
+%    String ++ "," ++ getDayList(T),
+    L = lengthList(T),
+    if
+        L =:= 0 ->
+            String;
+        true ->
+            String ++ "," ++ getDayList(T)
+    end.
+
+getWindList([]) ->
+    "";
+getWindList([H|T]) ->
+    {_,_,C} = H,
+    [BinaryString] = C,
+    String = erlang:binary_to_list(binary:part(BinaryString, {0, byte_size(BinaryString) - 5})),
+    L = lengthList(T),
+    if
+        L =:= 0 ->
+            String;
+        true ->
+            String ++ "," ++ getWindList(T)
+    end.
+
+convertList([])->
+    "";
+convertList([H|T]) ->
+    L = lengthList(T),
+    if
+        L =:= 0 ->
+            integer_to_list(H);
+        true ->
+            integer_to_list(H) ++ "," ++ convertList(T)
+    end.
 
 
 
+test() ->
+    Lista = [1,2,3,-4,45,85,-16],
+    String = convertList(Lista),
+    String.
 
 
+getDays() ->
+    String = "Poniedzialek,Wtorek,Sroda,Czwartek,Piatek",
+    String.
+getTemps() ->
+    String = "1,5,12,45,-15",
+    String.
+getWinds() ->
+    String = "15,20,45,10,5",
+    String.
+
+getAllValues() ->
+    getDays() ++ "=" ++ getTemps() ++ "=" ++ getWinds().
