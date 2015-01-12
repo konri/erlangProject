@@ -97,15 +97,15 @@ test() ->
     String.
 
 
-getDays() ->
-    String = "Poniedzialek,Wtorek,Sroda,Czwartek,Piatek",
+getDays(Url) ->
+    String = getDayList(getInformation(Url,"//td[@id='day']")),
     String.
-getTemps() ->
-    String = "1,5,12,45,-15",
+getTemps(Url) ->
+    String = convertList(getTemperatureList(getInformation(Url,"//td[@id='temp']"))),
     String.
-getWinds() ->
-    String = "15,20,45,10,5",
+getWinds(Url) ->
+    String = getWindList(getInformation(Url,"//td[@id='wind']")),
     String.
 
-getAllValues() ->
-    getDays() ++ "=" ++ getTemps() ++ "=" ++ getWinds().
+getAllValues(Url) ->
+    getDays(Url) ++ "=" ++ getTemps(Url) ++ "=" ++ getWinds(Url).

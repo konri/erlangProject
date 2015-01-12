@@ -9,7 +9,7 @@
 %% Cos = cos:test(),
 
 out(A) ->
-    AllValues = cos:getAllValues(),
+    AllValues = cos:getAllValues("http://localhost:8081/test.html"),
     H = A#arg.headers,
     C = H#headers.cookie,
     case yaws_api:find_cookie_val("AllValues", C) of
