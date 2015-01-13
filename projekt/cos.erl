@@ -4,6 +4,8 @@
 start() ->
     inets:start().
 
+stop() ->
+    inets:stop().
 
 lengthList([]) ->
     0;
@@ -39,6 +41,11 @@ getSpecifyElements(HtmlTag, JsonStructure) ->
 
 getInformation(Url, HtmlTag) ->
     getSpecifyElements(HtmlTag, getJsonStructure(getResponse(Url))).
+
+
+
+
+
 
 
 getTemperatureList([]) ->
@@ -109,3 +116,21 @@ getWinds(Url) ->
 
 getAllValues(Url) ->
     getDays(Url) ++ "=" ++ getTemps(Url) ++ "=" ++ getWinds(Url).
+
+calc(Url) ->
+    Self = self(),
+    Pids = [ spawn_link(fun() -> Self ! {self(), getAllValues(X)} end) || X <- Url ],
+    Results = [ receive {Pid, R} -> R end || Pid <- Pids ],
+    convertToJs(Results).
+
+convertToJs([]) ->
+    "";
+convertToJs([String|T]) ->
+    L = lengthList(T),
+    if
+        L =:= 0 ->
+            String;
+        true ->
+            String ++ "+" ++ convertToJs(T)
+    end.
+

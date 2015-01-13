@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+
+    <script type="text/javascript"
+            src="https://www.google.com/jsapi?autoload={
+            'modules':[{
+              'name':'visualization',
+              'version':'1',
+              'packages':['corechart']
+            }]
+          }"></script>
+
+
+
+    <script type="text/javascript">
+
+function Create2DArray(rows) {
+    var arr = [];
+
+    for (var i=0;i<rows;i++) {
+    arr[i] = [];
+    }
+
+    return arr;
+    }
+
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+
+
+function getArray() {
+
+    document.getElementById("demo").innerHTML = "::";
+    var getCookie;
+    if( (getCookie = readCookie('AllValues')) != null){
+
+        var tab = getCookie.split("=");
+        var days = tab[0].split(",");
+        var temp = tab[1].split(",");
+        var wind = tab[2].split(",");
+
+        var array = Create2DArray(days.length + 1);
+         console.log("work2");
+        array[0][0] = 'Day';
+        array[0][1] = 'Temp';
+        array[0][2] = 'Wind';
+
+            var i,j;
+            for(i = 0; i < days.length; i++){
+            array[i + 1][0] = days[i];
+            array[i + 1][1] = parseInt(temp[i]);
+            array[i + 1][2] = parseInt(wind[i]);
+            }
+
+
+
+
+       return array;
+    }else{
+        return null;
+    }
+
+}
+
+function myFunction(){
+     var array = getArray();
+    console.log("dzia" + array[0].length);
+    var i,j;
+               for(i = 0; i< array.length; i++){
+                   for(j = 0; j<array[0].length; j++){
+                     document.getElementById("demo").innerHTML += array[i][j] + "|";
+
+                    }
+                    document.getElementById("demo").innerHTML += "<br />";
+                }
+
+
+
+}
+
+
+
+
+google.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+      myFunction();
+        var data = google.visualization.arrayToDataTable(getArray());
+
+        var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+
+
+</script>
+
+
+</head>
+<body>
+
+</body>
+</html>
