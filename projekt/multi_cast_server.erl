@@ -41,6 +41,13 @@ update_status(User, Status) ->
 %%%===================================================================
 %%% Functions for internal Use zapis do bazy danych.
 %%%===================================================================
+convert_to_json(Data) ->
+  Content = [{obj, [{name, list_to_binary(Name)},
+    {status, list_to_binary(Status)}]} ||
+    {Name, Status} <-Data],
+  {obj, [{data, Content}]}.
+
+
 update_user_status([], User, Status) ->
   [{User, Status}];
 update_user_status([{User, OldStatus} | Tail], User, Status) ->
@@ -117,7 +124,7 @@ init(Status) ->
 %%--------------------------------------------------------------------
 handle_call({get_current_user_status}, _From, State) ->
   {reply,
-    {ok, State},
+    {ok, convert_to_json(State)},
     State};
 
 handle_call({get_users}, _From, State) ->
