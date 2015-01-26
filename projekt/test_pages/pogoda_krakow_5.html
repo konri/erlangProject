@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<!--
+	Autonomy by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Pogoda testowa kraków 14 dni.</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+		
+		<script>
+		
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}		
+function myFunction() {
+    var array = document.getElementsByName("temp");
+	for(var i = 0; i < array.length; i++){
+		array[i].innerHTML = getRandomInt(-15,15);
+	}
+	
+	var arrayWinds = document.getElementsByName("wind");
+	for(var i = 0; i < arrayWinds.length; i++){
+		arrayWinds[i].innerHTML = getRandomInt(0,30) + " km/h";
+	}
+}
+</script>
+
+
+	</head>
+<body onload="myFunction()">
+
+		<!-- Header -->
+		<div id="header">
+			<div class="container">
+				
+				<!-- Logo -->
+				<div id="logo">
+					<h1><a href="#">Pogoda kraków </a></h1>
+				</div>
+				
+				<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Pogoda na kilka dni</a></li>
+						<li><a href="twocolumn1.html">Długoterminowa</a></li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+		<!-- Header -->
+
+		<div id="banner">&nbsp;</div>
+
+		<div id="featured">
+		<h1>Pogoda randomowa</h1>
+			<div class="container_box">
+				<div class="row">
+					<div class="12u">
+						<section>
+											<table cellpadding="3" cellspacing="3" width="550">
+								<tr style="border-bottom: 1px solid black; background-color: #DBBA25;">
+									<td> Numer dnia <br />(liczone od dzisiejszego) </td>
+									<td> Dzień tygodnia </td>
+									<td> Data </td>
+									<td> Temperatura </td>
+									<td> Siła wiatru </td>
+								<tr> 
+									<td>1</td>
+									<td id="day">Czw</td>
+									<td>16.01.2015</td>
+									<td name="temp" id="temp">9</td>
+									<td name="wind" id="wind">18 km/h</td>
+
+								</tr>
+
+								<tr> 
+									<td>2</td>
+									<td id="day">Pt</td>
+									<td>17.01.2015</td>
+									<td name="temp" id="temp">8</td>
+									<td name="wind" id="wind">12 km/h</td>
+		
+								</tr>
+
+								<tr> 
+									<td>3</td>
+									<td id="day">Sb</td>
+									<td>18.01.2015</td>
+									<td name="temp" id="temp">9</td>
+									<td name="wind" id="wind">7 km/h</td>
+
+								</tr>
+
+								<tr> 
+									<td>4</td>
+									<td id="day">Ndz</td>
+									<td>19.01.2015</td>
+									<td name="temp" id="temp">4</td>
+									<td name="wind" id="wind">9 km/h</td>
+
+								</tr>
+
+								<tr> 
+									<td>5</td>
+									<td id="day">Pon</td>
+									<td>20.01.2015</td>
+									<td name="temp" id="temp">8</td>
+									<td name="wind" id="wind">48 km/h</td>
+
+								</tr>
+
+								<tr>
+									<td>6</td>
+									<td id="day">Wt</td>
+									<td>21.01.2015</td>
+									<td name="temp" id="temp">3</td>
+									<td name="wind" id="wind">15 km/h</td>
+
+								</tr>
+
+								<tr>
+									<td>7</td>
+									<td id="day">Sr</td>
+									<td>22.01.2015</td>
+									<td name="temp" id="temp">5</td>
+									<td name="wind" id="wind">12 km/h</td>
+
+								</tr>
+								<tr>
+									<td>8</td>
+									<td id="day">Czw</td>
+									<td>23.01.2015</td>
+									<td name="temp" id="temp">4</td>
+									<td name="wind" id="wind">5 km/h</td>
+
+								</tr>
+								<tr>
+									<td>9</td>
+									<td id="day">Pt</td>
+									<td>24.01.2015</td>
+									<td name="temp" id="temp">-2</td>
+									<td name="wind" id="wind">17 km/h</td>
+
+								</tr>
+								<tr>
+									<td>10</td>
+									<td id="day">Sob</td>
+									<td>25.01.2015</td>
+									<td name="temp" id="temp">4</td>
+									<td name="wind" id="wind">16 km/h</td>
+
+								</tr>
+								<tr>
+									<td>11</td>
+									<td id="day">Ndz</td>
+									<td>26.01.2015</td>
+									<td name="temp" id="temp">3</td>
+									<td name="wind" id="wind">12 km/h</td>
+
+								</tr>
+								<tr>
+									<td>12</td>
+									<td id="day">Pon</td>
+									<td>27.01.2015</td>
+									<td name="temp" id="temp">-3</td>
+									<td name="wind" id="wind">4 km/h</td>
+
+								</tr>
+								<tr>
+									<td>13</td>
+									<td id="day">Wt</td>
+									<td>28.01.2015</td>
+									<td name="temp" id="temp">4</td>
+									<td name="wind" id="wind">10 km/h</td>
+
+								</tr>
+								<tr>
+									<td>14</td>
+									<td id="day">Sr</td>
+									<td>29.01.2015</td>
+									<td name="temp" id="temp">4</td>
+									<td name="wind" id="wind">24 km/h</td>
+
+								</tr>
+
+
+</table>
+							
+							
+						</section>
+					</div>		
+				</div>
+			</div>
+		</div>
+		
+
+		<div id="main">
+			<div class="container">
+				<div class="row">
+					<div class="8u">
+						<section>
+							<header>
+								<h2>Testowy layout symulujacy portal pogodowy</h2>
+							</header>
+								<p>Strona została wykonana do projektu PWIR, zostanie z niej pobrane wszystkie dane na temat pogody </p>
+							
+						</section>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<div class="container">
+				
+			</div>
+		</div>
+
+	</body>
+</html>

@@ -1,13 +1,65 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PWIR project -- Web scraping -- Weather</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="default.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
- <erl>
 
- </erl>
+<!-- start header -->
+<div id="header">
+	<div id="logo">
+		<h1>Web scraping</h1><br />
+		<h2>PWIR project -- weather scraping </h2>
+	</div>
+	
+</div>
+<!-- end header -->
 
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<div class="formularz">
+			<h1>Rysowanie wykresów oraz uśrednianie wartości</h1>
+            <span style="color:#58B1D1;font-size:14px">Wybór portali, z których bedą pobierane dane.</span>
+
+			<form action="drawGraphs.yaws" method="POST">
+			<table cellpadding="1" cellspacing="1" width="350">
+				<tr>
+					<td><input type="checkbox" name="url1" value="http://localhost:8081/test_pages/pogoda_krakow.html" /> </td> <td style="width: 400px;">Pogoda na 14 dni Kraków - strona testowa nr. 1</td>
+				</tr>
+				<tr>
+                    <td><input type="checkbox" name="url2" value="http://localhost:8081/test_pages/pogoda_krakow_2.html"> </td> <td style="width:400px;">Pogoda na 14 dni Kraków - strona testowa nr. 2</td>
+				</tr>
+                <tr>
+                    <td><input type="checkbox" name="url3" value="http://localhost:8081/test_pages/pogoda_krakow_3.html"> </td> <td style="width:400px;">Pogoda na 14 dni Kraków - strona testowa nr. 3</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="url4" value="http://localhost:8081/test_pages/pogoda_krakow_4.html"> </td><td style="width:400px;">Pogoda na 14 dni Kraków - strona testowa nr. 4</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="url5" value="http://localhost:8081/test_pages/pogoda_krakow_5.html"> </td> <td style="width:400px;">Pogoda na 14 dni Kraków - strona testowa nr. 5</td>
+                </tr>
+				<tr>
+					<td colspan="2" style="text-align:right;"><input type="submit" value="Submit" /></td>
+				</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+	<!-- end content -->
+
+	<div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end page -->
+<!-- start footer -->
+<div id="footer">
+</div>
+<!-- end footer -->
 </body>
 </html>

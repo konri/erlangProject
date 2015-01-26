@@ -1,0 +1,17 @@
+<erl>
+
+convert_to_json(Data) ->
+    Content = [{obj, [{name, list_to_binary(Name)},
+    {status, list_to_binary(Status)}]} ||
+    {Name, Status} <-Data],
+    {obj, [{data, Content}]}.
+
+
+out(_Arg) ->
+    {ok, Obj} = multi_cast_server:get_current_user_status(),
+    io:format("~n (~p) Raw Data ~p~n", [self(), Obj]),
+    JSON = rfc4627:encode(convert_to_json(Obj)),
+    io:format("~n (~p) JSON -> ~p~n", [self(), JSON]),
+    {content, "application/json", JSON}.
+
+</erl>
