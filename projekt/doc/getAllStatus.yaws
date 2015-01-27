@@ -1,0 +1,8 @@
+<erl>
+
+out(_Arg) ->
+    {ok, Obj} = web_scraping_server:get_current_user_status(),
+    JSON = rfc4627:encode(Obj),
+     {content,"application/json; charset=iso-8859-1",JSON}.
+
+</erl>

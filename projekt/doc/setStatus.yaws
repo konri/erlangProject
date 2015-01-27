@@ -1,0 +1,13 @@
+<erl>
+
+out(Arg) ->
+
+    {ok, Name} = postvar(Arg, "name"),
+    {ok, DateS} = postvar(Arg, "data"),
+    {ok, Days} = postvar(Arg, "days"),
+    {ok, Temp} = postvar(Arg, "temp"),
+    {ok, Wind} = postvar(Arg, "wind"),
+     web_scraping_server:update_status(Name, DateS ++ ";" ++ Days ++ ";" ++ Temp ++ ";" ++ Wind),
+    {html, "true"}.
+
+</erl>

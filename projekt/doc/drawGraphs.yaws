@@ -1,0 +1,117 @@
+<erl>
+
+out(A) ->
+    handleParser:start(),
+  Checkboxs = ["url1","url2","url3","url4","url5"],
+    Urls = handleParser:removeNonExistWebs([],handleParser:removeEmptyElements([],[ case postvar(A,Checkbox) of
+        undefined -> void;
+        {ok, Val} -> Val
+        end || Checkbox <- Checkboxs])),
+        H = A#arg.headers,
+        C = H#headers.cookie,
+    case Urls =/= [] of
+      true ->
+        AllValues = handleParser:getAllValuesConcurrency(Urls),
+          case yaws_api:find_cookie_val("AllValues", C) of
+              [] ->
+                  yaws_api:setcookie("AllValues",[AllValues],"/");
+              Cookie ->
+                  yaws_api:setcookie("AllValues",[AllValues],"/")
+          end;
+      false ->
+                 yaws_api:setcookie("AllValues",[""],"/")
+    end.
+
+
+
+
+</erl>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PWIR project -- Web scraping -- Weather</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript"
+          src="https://www.google.com/jsapi?autoload={
+            'modules':[{
+              'name':'visualization',
+              'version':'1',
+              'packages':['corechart']
+            }]
+          }"></script>
+<script src="handleData.js"></script>
+<script src="js/jquery-1.11.2.min.js"></script>
+
+<script type="text/javascript" >
+$( window ).load(function() {
+
+$( "#addForm" ).submit(function( event ) {
+
+  event.preventDefault();
+
+  var $form = $( this ),
+    userName = $form.find( "input[name='name']" ).val(),
+    dataDays = $form.find( "input[name='days']" ).val(),
+    dataTemp = $form.find( "input[name='temp']" ).val(),
+    dataWind = $form.find( "input[name='wind']" ).val(),
+    fullDate = $form.find( "input[name='data']" ).val(),
+    url = $form.attr( "action" );
+
+  // Send the data using post
+  var posting = $.post( url, { name: userName, data:fullDate, days: dataDays, temp:dataTemp, wind:dataWind} );
+     posting.done(function( data ) {
+        $( "#result" ).empty().append("<b>Dane zostały zapisane</b>" );
+      });
+
+  return false;
+});
+
+
+
+});
+
+</script>
+
+</head>
+<body>
+
+<!-- start header -->
+<div id="header">
+	<div id="logo">
+		<h1>Web scraping</h1><br />
+		<h2>PWIR project -- weather scraping </h2>
+	</div>
+
+</div>
+<!-- end header -->
+
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+	 <div id="result">
+	<form action="setStatus.yaws" id="addForm" method="post">
+      <input id ="inputId" type="text" name="name" placeholder="Add your name...">
+      <input type="submit" value="Add to databases">
+    </form>
+   </div>
+
+
+	</div>
+	<!-- end content -->
+
+	<div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end page -->
+<!-- start footer -->
+<div id="footer">
+</div>
+<!-- end footer -->
+</body>
+</html>
